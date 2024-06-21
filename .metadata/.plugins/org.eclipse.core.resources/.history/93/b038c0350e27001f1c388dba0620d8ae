@@ -1,0 +1,37 @@
+package com.example.demo.config;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Configuration
+@EnableConfigurationProperties
+@ConfigurationProperties(prefix = "application.security")
+@Getter
+@Setter
+public class JwtConfig {
+	public String getJwtSecretKey() {
+		return jwtSecretKey;
+	}
+	public void setJwtSecretKey(String jwtSecretKey) {
+		this.jwtSecretKey = jwtSecretKey;
+	}
+	public int getJwtExpiredAccessToken() {
+		return jwtExpiredAccessToken;
+	}
+	public void setJwtExpiredAccessToken(int jwtExpiredAccessToken) {
+		this.jwtExpiredAccessToken = jwtExpiredAccessToken;
+	}
+	public int getJwtExpiredRefreshToken() {
+		return jwtExpiredRefreshToken;
+	}
+	public void setJwtExpiredRefreshToken(int jwtExpiredRefreshToken) {
+		this.jwtExpiredRefreshToken = jwtExpiredRefreshToken;
+	}
+	private String jwtSecretKey;
+	private int jwtExpiredAccessToken;
+	private int jwtExpiredRefreshToken;
+}

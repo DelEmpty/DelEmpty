@@ -1,0 +1,155 @@
+package com.example.demo.model;
+import java.io.Serializable;
+
+import com.example.demo.enums.TypePayment;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "client")
+public class Client implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	public Client() {
+		
+	}
+	
+	
+	@Id
+	@Column(name = "idclient")
+	private String IdChar;
+	
+	@Column(name = "name")
+	private String Name;
+	
+	@Column(name = "surname")
+	private String surname;
+	
+	@Column(name = "address")
+	private String Address;
+	
+	@Column(name = "mail")
+	private String Mail;
+	
+	@Column(name = "password")
+	private String Password;
+	
+	@Column(name = "typepayment")
+	@Enumerated(EnumType.STRING)
+	private TypePayment TypePayment;
+	
+	@Column(name = "dtsignup")
+	private String DTSignup;
+	
+	@Column(name = "dtsignoff")
+	private String DTSignoff;
+	
+	@Column(name = "dtlastlogin")
+	private String DTLastLogin;
+	
+	@Column(name = "tmlastlogin")
+	private String TMLastLogin;
+
+
+	public String getIdChar() {
+		return IdChar;
+	}
+
+	public String getName() {
+		return Name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public String getAdress() {
+		return Address;
+	}
+
+	public String getMail() {
+		return Mail;
+	}
+
+	public String getPassword() {
+		return Password;
+	}
+
+	public TypePayment getTypePayment() {
+		return TypePayment;
+	}
+
+	public String getDTSignup() {
+		return DTSignup;
+	}
+
+	public String getDTSignoff() {
+		return DTSignoff;
+	}
+
+	public String getDTLastLogin() {
+		return DTLastLogin;
+	}
+
+	public String getTMLastLogin() {
+		return TMLastLogin;
+	}
+
+	public void setIdChar(String idChar) {
+		IdChar = idChar;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public void setAdress(String address) {
+		Address = address;
+	}
+
+	public void setMail(String mail) {
+		Mail = mail;
+	}
+
+	public void setPassword(String password) {
+		Password = password;
+	}
+
+	public void setTypePayment(TypePayment typePayment) {
+		TypePayment = typePayment;
+	}
+
+	public void setDTSignup(String dTSignup) {
+		DTSignup = dTSignup;
+	}
+
+	public void setDTSignoff(String dTSignoff) {
+		DTSignoff = dTSignoff;
+	}
+
+	public void setDTLastLogin(String dTLastLogin) {
+		DTLastLogin = dTLastLogin;
+	}
+
+	public void setTMLastLogin(String tMLastLogin) {
+		TMLastLogin = tMLastLogin;
+	}
+	
+	
+	
+	
+}

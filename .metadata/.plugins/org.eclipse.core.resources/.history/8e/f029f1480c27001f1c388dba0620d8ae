@@ -1,0 +1,20 @@
+package com.example.demo.util;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.example.demo.config.JwtConfig;
+
+
+@Component
+public class JwtUtils {
+
+	@Autowired
+	private JwtConfig jwtConfig;
+	
+	
+	//Creare una funzione c
+	public String BuildToken(Map<String>, Object obj, Client client, Integer expiration) {
+		return jwts.compact;
+	}
+

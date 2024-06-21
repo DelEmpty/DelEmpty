@@ -1,0 +1,75 @@
+package com.example.demo.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.interfaces.OrderFunctions;
+import com.example.demo.model.Order;
+import com.example.demo.service.OrderService;
+
+@RestController
+@RequestMapping(path = "Progetto_Acquisti")
+public class OrderController {
+
+	@Autowired
+	private OrderFunctions orderService;
+	
+	@PostMapping(value = "addorder", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<Void> addOrder(@RequestBody Order order){
+		order = orderService.addOrder(order);
+		if(order!=null) {
+			return new ResponseEntity<Void>(HttpStatus.CREATED);
+		}
+		return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+	}
+	
+	@GetMapping(value = "getorder/{idorder}", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<Optional<Order>> getOrder(@PathVariable("idorder") int idOrder){
+		Optional<Order> order = orderService.getOrder(idOrder);
+		
+		if(order.isPresent()) {
+			return new ResponseEntity<Optional<Order>>(order,HttpStatus.FOUND);
+		}
+		return new ResponseEntity<Optional<Order>>(order,HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping(value = "getorderlist", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<List<Order>> getOrderList(){
+		return new ResponseEntity<List<Order>>(orderService.getAllOrders(),HttpStatus.NOT_FOUND);
+	}
+	
+	@PostMapping(value = "updateorder", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<Void> updateOrder(@RequestBody Order order){
+		boolean updated = orderService.updateOrder(order);
+		if(updated) {
+			return new ResponseEntity<Void>(HttpStatus.CREATED);
+		}
+		return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+	}
+	
+	@GetMapping(value = "order/existsarticle/{idorder}/{idarticle}", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<Void> existsArticle(@PathVariable("idorder") int idOrder, @PathVariable("idarticle") String idArticle){
+		boolean exists = orderService.existsArticle(idOrder, idArticle);
+		
+		if(exists) {
+			return new ResponseEntity<Void>(HttpStatus.FOUND);
+		}
+		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+	}
+	
+	
+	
+	
+	
+}

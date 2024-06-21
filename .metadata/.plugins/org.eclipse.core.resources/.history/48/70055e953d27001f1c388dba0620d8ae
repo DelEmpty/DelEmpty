@@ -1,0 +1,39 @@
+package com.example.demo.models;
+
+import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+
+public class Voli implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	@Id
+	@Column(name = "codice_volo_id")
+	private int codiceVoloID;
+	
+	@Column(name = "nome_volo")
+	private String nomeVolo;
+	
+	@Column(name = "aereoporto_partenza")
+	private String aereoportoPartenza;
+	
+	@Column(name = "costo_volo")
+	private float costoVolo;
+	
+	@Column(name = "data_volo")
+	private Date dataVolo;
+	
+	@Column(name = "ora_partenza")
+	private Time oraPartenza;
+	
+	@Column(name = "posti_disponibili")
+	private int postiDisponibili;
+}
